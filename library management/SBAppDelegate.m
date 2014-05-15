@@ -7,11 +7,17 @@
 //
 
 #import "SBAppDelegate.h"
-
+#import "SBFirstView.h"
 @implementation SBAppDelegate
 
+@synthesize view;
+@synthesize navigationController;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    view=[[SBFirstView alloc]initWithNibName:@"SBFirstView" bundle:nil];
+     navigationController=[[UINavigationController alloc]initWithRootViewController:view];
+    self.window.rootViewController=navigationController;
+    
     // Override point for customization after application launch.
     return YES;
 }
@@ -40,6 +46,9 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
+    [view release];
+    [navigationController release];
+    
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 

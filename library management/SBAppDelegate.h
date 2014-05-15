@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "SBFirstView.h"
 @interface SBAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-
+@property ( retain) SBFirstView *view;
+@property (retain) UINavigationController *navigationController;
 @end

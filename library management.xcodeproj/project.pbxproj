@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		78B9DC911924C5C8005C56F3 /* SBDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B9DC8F1924C5C8005C56F3 /* SBDetailViewController.m */; };
+		78B9DC921924C5C8005C56F3 /* SBDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78B9DC901924C5C8005C56F3 /* SBDetailViewController.xib */; };
 		78C1C04219249D8000379DB8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C1C04119249D8000379DB8 /* Foundation.framework */; };
 		78C1C04419249D8000379DB8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C1C04319249D8000379DB8 /* CoreGraphics.framework */; };
 		78C1C04619249D8000379DB8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C1C04519249D8000379DB8 /* UIKit.framework */; };
@@ -21,6 +23,13 @@
 		78C1C06319249D8100379DB8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C1C04519249D8000379DB8 /* UIKit.framework */; };
 		78C1C06B19249D8100379DB8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 78C1C06919249D8100379DB8 /* InfoPlist.strings */; };
 		78C1C06D19249D8100379DB8 /* library_managementTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C1C06C19249D8100379DB8 /* library_managementTests.m */; };
+		78C1C07E19249F8200379DB8 /* SBFirstView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C1C07C19249F8200379DB8 /* SBFirstView.m */; };
+		78C1C07F19249F8200379DB8 /* SBFirstView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78C1C07D19249F8200379DB8 /* SBFirstView.xib */; };
+		78C1C0831924A09C00379DB8 /* SBBookManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C1C0821924A09C00379DB8 /* SBBookManager.m */; };
+		78C1C0851924A19F00379DB8 /* stack-of-books.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 78C1C0841924A19F00379DB8 /* stack-of-books.jpg */; };
+		78C1C08D1924AE7400379DB8 /* SBBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C1C08C1924AE7400379DB8 /* SBBook.m */; };
+		78C1C0D21924B98700379DB8 /* SBEntryFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C1C0D01924B98700379DB8 /* SBEntryFormViewController.m */; };
+		78C1C0D31924B98700379DB8 /* SBEntryFormViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78C1C0D11924B98700379DB8 /* SBEntryFormViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +43,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		78B9DC8E1924C5C8005C56F3 /* SBDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBDetailViewController.h; sourceTree = "<group>"; };
+		78B9DC8F1924C5C8005C56F3 /* SBDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBDetailViewController.m; sourceTree = "<group>"; };
+		78B9DC901924C5C8005C56F3 /* SBDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SBDetailViewController.xib; sourceTree = "<group>"; };
 		78C1C03E19249D8000379DB8 /* library management.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "library management.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		78C1C04119249D8000379DB8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		78C1C04319249D8000379DB8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -53,6 +65,17 @@
 		78C1C06819249D8100379DB8 /* library managementTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "library managementTests-Info.plist"; sourceTree = "<group>"; };
 		78C1C06A19249D8100379DB8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		78C1C06C19249D8100379DB8 /* library_managementTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = library_managementTests.m; sourceTree = "<group>"; };
+		78C1C07B19249F8200379DB8 /* SBFirstView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBFirstView.h; sourceTree = "<group>"; };
+		78C1C07C19249F8200379DB8 /* SBFirstView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBFirstView.m; sourceTree = "<group>"; };
+		78C1C07D19249F8200379DB8 /* SBFirstView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SBFirstView.xib; sourceTree = "<group>"; };
+		78C1C0811924A09C00379DB8 /* SBBookManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBBookManager.h; sourceTree = "<group>"; };
+		78C1C0821924A09C00379DB8 /* SBBookManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBBookManager.m; sourceTree = "<group>"; };
+		78C1C0841924A19F00379DB8 /* stack-of-books.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "stack-of-books.jpg"; sourceTree = "<group>"; };
+		78C1C08B1924AE7400379DB8 /* SBBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBBook.h; sourceTree = "<group>"; };
+		78C1C08C1924AE7400379DB8 /* SBBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBBook.m; sourceTree = "<group>"; };
+		78C1C0CF1924B98700379DB8 /* SBEntryFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBEntryFormViewController.h; sourceTree = "<group>"; };
+		78C1C0D01924B98700379DB8 /* SBEntryFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBEntryFormViewController.m; sourceTree = "<group>"; };
+		78C1C0D11924B98700379DB8 /* SBEntryFormViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SBEntryFormViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +135,9 @@
 		78C1C04719249D8000379DB8 /* library management */ = {
 			isa = PBXGroup;
 			children = (
+				78C1C0801924A07300379DB8 /* controller */,
+				78C1C07A19249F5200379DB8 /* view */,
+				78C1C07619249E8900379DB8 /* model */,
 				78C1C05019249D8000379DB8 /* SBAppDelegate.h */,
 				78C1C05119249D8000379DB8 /* SBAppDelegate.m */,
 				78C1C05319249D8000379DB8 /* Main.storyboard */,
@@ -126,6 +152,7 @@
 		78C1C04819249D8000379DB8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				78C1C0841924A19F00379DB8 /* stack-of-books.jpg */,
 				78C1C04919249D8000379DB8 /* library management-Info.plist */,
 				78C1C04A19249D8000379DB8 /* InfoPlist.strings */,
 				78C1C04D19249D8000379DB8 /* main.m */,
@@ -150,6 +177,40 @@
 				78C1C06919249D8100379DB8 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		78C1C07619249E8900379DB8 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				78C1C08B1924AE7400379DB8 /* SBBook.h */,
+				78C1C08C1924AE7400379DB8 /* SBBook.m */,
+			);
+			name = model;
+			sourceTree = "<group>";
+		};
+		78C1C07A19249F5200379DB8 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				78C1C07B19249F8200379DB8 /* SBFirstView.h */,
+				78C1C07C19249F8200379DB8 /* SBFirstView.m */,
+				78C1C07D19249F8200379DB8 /* SBFirstView.xib */,
+				78C1C0CF1924B98700379DB8 /* SBEntryFormViewController.h */,
+				78C1C0D01924B98700379DB8 /* SBEntryFormViewController.m */,
+				78C1C0D11924B98700379DB8 /* SBEntryFormViewController.xib */,
+				78B9DC8E1924C5C8005C56F3 /* SBDetailViewController.h */,
+				78B9DC8F1924C5C8005C56F3 /* SBDetailViewController.m */,
+				78B9DC901924C5C8005C56F3 /* SBDetailViewController.xib */,
+			);
+			name = view;
+			sourceTree = "<group>";
+		};
+		78C1C0801924A07300379DB8 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				78C1C0811924A09C00379DB8 /* SBBookManager.h */,
+				78C1C0821924A09C00379DB8 /* SBBookManager.m */,
+			);
+			name = controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -229,8 +290,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78C1C07F19249F8200379DB8 /* SBFirstView.xib in Resources */,
 				78C1C05A19249D8000379DB8 /* Images.xcassets in Resources */,
+				78C1C0851924A19F00379DB8 /* stack-of-books.jpg in Resources */,
 				78C1C04C19249D8000379DB8 /* InfoPlist.strings in Resources */,
+				78B9DC921924C5C8005C56F3 /* SBDetailViewController.xib in Resources */,
+				78C1C0D31924B98700379DB8 /* SBEntryFormViewController.xib in Resources */,
 				78C1C05519249D8000379DB8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -250,9 +315,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78C1C0831924A09C00379DB8 /* SBBookManager.m in Sources */,
+				78C1C0D21924B98700379DB8 /* SBEntryFormViewController.m in Sources */,
+				78B9DC911924C5C8005C56F3 /* SBDetailViewController.m in Sources */,
+				78C1C08D1924AE7400379DB8 /* SBBook.m in Sources */,
 				78C1C04E19249D8000379DB8 /* main.m in Sources */,
 				78C1C05819249D8000379DB8 /* SBViewController.m in Sources */,
 				78C1C05219249D8000379DB8 /* SBAppDelegate.m in Sources */,
+				78C1C07E19249F8200379DB8 /* SBFirstView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -379,6 +449,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "library management/library management-Prefix.pch";
 				INFOPLIST_FILE = "library management/library management-Info.plist";
@@ -392,6 +463,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "library management/library management-Prefix.pch";
 				INFOPLIST_FILE = "library management/library management-Info.plist";
@@ -461,6 +533,7 @@
 				78C1C07219249D8100379DB8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		78C1C07319249D8100379DB8 /* Build configuration list for PBXNativeTarget "library managementTests" */ = {
 			isa = XCConfigurationList;
@@ -469,6 +542,7 @@
 				78C1C07519249D8100379DB8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

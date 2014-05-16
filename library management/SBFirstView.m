@@ -10,9 +10,10 @@
 #import "SBBookManager.h"
 #import "SBEntryFormViewController.h"
 #import "SBDetailViewController.h"
+#import "SBTableViewCell.h"
 @interface SBFirstView ()
 
-@property (retain, nonatomic) IBOutlet UITableView *table;
+@property (strong, nonatomic) IBOutlet UITableView *table;
 
 @end
 
@@ -23,6 +24,9 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        
+        
+        //initialize shared manager
          _sharedManger = [SBBookManager sharedManager];
         
 
@@ -36,13 +40,21 @@
     // Do any additional setup after loading the view from its nib.
     
     
+    //set the background
+    UIColor *background = [[[UIColor alloc] initWithPatternImage:[UIImage imageNamed: @"stack-of-books.jpg"]]autorelease];
+    self.view.backgroundColor = background;
     
+    
+    //create a bar button
     UIBarButtonItem* infoButton = [[[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(add)]autorelease];
     self.navigationItem.rightBarButtonItem = infoButton;
     self.navigationItem.hidesBackButton = YES;
 
-    
+    //get the list of book titles to display
     _booklist=[_sharedManger getCellText];
+    
+
+
     
 }
 
@@ -55,62 +67,21 @@
 
 - (UITableViewCell *)tableView:(UITableView *)table cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //set the background
-    UIColor *background = [[[UIColor alloc] initWithPatternImage:[UIImage imageNamed: @"stack-of-books.jpg"]]autorelease];
-    
+    indexPath=indexPath;
     //deque reuseable cells
     static NSString *simpleTableIdentifier = @"SimpleTableItem";
     
-    UITableViewCell *cell = [table dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+    SBTableViewCell *cell = [table dequeueReusableCellWithIdentifier:simpleTableIdentifier];
     
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier]autorelease] ;
+        cell = [[SBTableViewCell alloc]initWithTitle:[_booklist objectAtIndex:indexPath.row]] ;
     }
     
-    //set the cell text label with  book names stored in booklist
-    cell.textLabel.text =[_booklist objectAtIndex:indexPath.row];
-    
-    UIColor *clr = [UIColor colorWithRed:0.89f green:0.81f blue:0.87f alpha:1];
-    UIButton *issueButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    issueButton.frame = CGRectMake(160.0f, 10.0f, 45.0f, 25.0f);
-    issueButton.backgroundColor=clr;
-    [issueButton setTitle:@"Issue" forState:UIControlStateNormal];
-    
-    //set the button tag with index value
-    issueButton.tag=indexPath.row;
-    
-    //action of the  issue button
-    [issueButton addTarget:self action:@selector(issue:) forControlEvents:UIControlEventTouchUpInside];
-    
-    //add button to the table view cell
-    [cell addSubview:issueButton ];
-    
-    //create a uibutton to return book
-    UIButton *returnButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    returnButton.frame = CGRectMake(225.0f, 10.0f, 50.0f, 25.0f);
-    returnButton.backgroundColor=clr;
-    [returnButton setTitle:@"Return" forState:UIControlStateNormal];
-    
-    //set the button tag with index value
-    returnButton.tag=indexPath.row;
-    
-    //action of the  issue button
-   [returnButton addTarget:self action:@selector(returns:) forControlEvents:UIControlEventTouchUpInside];
-    
-    //add button to the table view cell
-    [cell addSubview:returnButton ];
-    
-    //set background od table and cell
-    table.backgroundColor = background;
-    cell.backgroundColor=[UIColor clearColor];
-    
-    //set a accessory button to display details
-    cell.accessoryType = UITableViewCellAccessoryDetailButton;
-    
-    //return cell
+    cell.delegate=self;
+//    [cell getCellWithIndexPath:indexPath];
+//    //cell.textLabel.text=[_booklist objectAtIndex:indexPath.row];
+   
     return cell;
-
-    
     
 }
 -(void)add
@@ -134,40 +105,13 @@
     
     [super viewWillAppear:animated];
     
-    //initData
+    //get the data to be displayed
     
     _booklist=[_sharedManger getCellText];
     
+    //reload the table view after a new book is added
     [self.table reloadData];
     
-}
--(void)issue:(UIButton*)sender
-{
-    
-    
-    [_sharedManger setIndex:sender.tag];
-
-    
-    //call the delegate to issue book
-    [_sharedManger bookIssued];
-    
-    //display alert that book has been issued
-    UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"alert" message:@"the book has been issued" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-    [alert show];
-    [alert release];
-}
--(void)returns:(UIButton*)sender
-{
-    
-    [_sharedManger setIndex:sender.tag];
-    
-    //call the delegate to return book
-    [_sharedManger bookReturned];
-    
-    //display alert that book has been returned
-    UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"alert" message:@"the book has been returned" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-    [alert show];
-    [alert release];
 }
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
@@ -183,10 +127,32 @@
     
     
 }
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+-(void)issue:(UIButton*)sender
 {
-     [_sharedManger setIndex:indexPath.row];
+    //set the  index value
+    [_sharedManger setIndex:_indexPath.row];
+    
+    
+    //call the delegate to issue book
+    [_sharedManger bookIssued];
+    
+    //display alert that book has been issued
+    UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"alert" message:@"the book has been issued" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    [alert show];
+    [alert release];
+}
+-(void)returns:(UIButton*)sender
+{
+    //set the index value
+    [_sharedManger setIndex:_indexPath.row];
+    
+    //call the delegate to return book
+    [_sharedManger bookReturned];
+    
+    //display alert that book has been returned
+    UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"alert" message:@"the book has been returned" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    [alert show];
+    [alert release];
 }
 
 - (void)dealloc {

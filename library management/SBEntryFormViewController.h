@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "SBBookManager.h"
-@interface SBEntryFormViewController : UIViewController
+
+//conforms to textfied delegate
+@interface SBEntryFormViewController : UIViewController <UITextFieldDelegate,UITextViewDelegate>
+
+//shared manager instance
 @property (assign) SBBookManager *sharedManager;
+
 @end

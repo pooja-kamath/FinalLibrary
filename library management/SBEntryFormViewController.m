@@ -12,14 +12,12 @@
 
 @interface SBEntryFormViewController ()
 
-@property (retain, nonatomic) IBOutlet UITextField *titleText;
-@property (retain, nonatomic) IBOutlet UITextField *bookIdText;
+@property (strong, nonatomic) IBOutlet UITextField *titleText;
+@property (strong, nonatomic) IBOutlet UITextField *bookIdText;
 
-@property (retain, nonatomic) IBOutlet UITextField *authorText;
-
-@property (retain, nonatomic) IBOutlet UITextField *issuedText;
+@property (strong, nonatomic) IBOutlet UITextField *authorText;
+@property (retain, nonatomic) IBOutlet UISwitch *issueSwitch;
 - (IBAction)AddButton:(id)sender;
-
 @end
 
 @implementation SBEntryFormViewController
@@ -28,6 +26,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        
         // Custom initialization
         _sharedManager = [SBBookManager sharedManager];
         
@@ -40,6 +39,16 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    
+    
+    UIColor *background = [[[UIColor alloc] initWithPatternImage:[UIImage imageNamed: @"stack-of-books.jpg"]]autorelease];
+    self.view.backgroundColor = background;
+    
+    //set the text field delegate to self
+    _bookIdText.delegate = self;
+    _authorText.delegate=self;
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -48,47 +57,75 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)dealloc {
-    
-    [_titleText release];
-    [_bookIdText release];
-    [_issuedText release];
-    [_authorText release];
-    [super dealloc];
-}
+
 - (IBAction)AddButton:(id)sender {
     
-    
-     if([_issuedText.text isEqual:@"yes"]||[_issuedText.text isEqual:@"YES"])
-     {
-    
-         [_sharedManager addBookwithTitle:_titleText.text bookId:_bookIdText.text author:_authorText.text andIssued:YES];
+             [_sharedManager addBookwithTitle:_titleText.text bookId:_bookIdText.text author:_authorText.text andIssued:_issueSwitch.on];
          UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"alert" message:@"the book has been added" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
          [alert show];
          [alert release];
          
          [self.navigationController popViewControllerAnimated:YES];
-     }
-    else if([_issuedText.text isEqual:@"no"]||[_issuedText.text isEqual:@"NO"])
-    {
-        [_sharedManager addBookwithTitle:_titleText.text bookId:_bookIdText.text author:_authorText.text andIssued:NO];
-        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"alert" message:@"the book has been added" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-        [alert show];
-        [alert release];
-        
-        [self.navigationController popViewControllerAnimated:YES];
+    
+}
 
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if(textField ==_bookIdText)
+    {
+         //if the text field is empty then the text should change
+        if ([string isEqualToString:@""]) return YES;
+        {
+            //if the length is less than 4 text should change
+            if ((_bookIdText.text).length <4)
+           {
+               return YES;
+            
+            }
+         //text is greater than four text field should not change
+              else
+          {
+             return NO;
+          }
+    }
+    return YES;
     }
     
-    else
+    if(textField ==_authorText)
     {
-        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"alert" message:@"enter YES or NO" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-        [alert show];
-        [alert release];
         
-    }
+        //if the text field is empty then the text should change
 
+        if ([string isEqualToString:@""]) return YES;
+            unichar c = [string characterAtIndex:0];
+        
+        //if numbers are not entered then text should change
+            if (![[NSCharacterSet decimalDigitCharacterSet] characterIsMember:c])
+            {
+                return YES;
+            }
+            else
+            {
+                return NO;
+            }
+        
+        
+        return YES;
+    }
     
+      
+    
+    return YES;
+}
+
+
+- (void)dealloc {
+    
+    [_titleText release];
+    [_bookIdText release];
+        [_authorText release];
+    [_issueSwitch release];
+    [super dealloc];
 }
 
 @end

@@ -8,8 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "SBBookManager.h"
-@interface SBFirstView : UIViewController <UITableViewDataSource ,UITableViewDelegate>
+#import "SBTableViewCell.h"
+@interface SBFirstView : UIViewController <UITableViewDataSource ,UITableViewDelegate,cellDelegate>
 
+// list to store the titles of the book
 @property (retain) NSArray *booklist;
+
+//shared manager instance
 @property (assign) SBBookManager *sharedManger;
+
+@property (assign) NSIndexPath *indexPath;
 @end

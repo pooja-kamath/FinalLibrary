@@ -11,10 +11,10 @@
 #import "SBBookManager.h"
 
 @interface SBDetailViewController ()
-@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
+@property (strong, nonatomic) IBOutlet UILabel *titleLabel;
 
-@property (retain, nonatomic) IBOutlet UILabel *bookIdLabel;
-@property (retain, nonatomic) IBOutlet UILabel *authorLabel;
+@property (strong, nonatomic) IBOutlet UILabel *bookIdLabel;
+@property (strong, nonatomic) IBOutlet UILabel *authorLabel;
 
 - (IBAction)okButton:(id)sender;
 
@@ -40,35 +40,19 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    
+//    UIColor *background = [[[UIColor alloc] initWithPatternImage:[UIImage imageNamed: @"stack-of-books.jpg"]]autorelease];
+//    self.view.backgroundColor = background;
+    
+    //get the book object that has to be displayed
     SBBook *book=[_sharedManager getBookDetail];
+    
+    //set the label values to the value that has to be displayed
     _titleLabel.text=book.title;
     _bookIdLabel.text=book.bookId;
     _authorLabel.text=book.author;
-  
-    if(book.issued==YES)
-    {
-        NSLog(@"%d",book.issued);
-        _issueSwitch.on=YES;
-    }
-    
- else
-    {
-        NSLog(@"%d",book.issued);
-        _issueSwitch.on=NO;
-    }
-
+    _issueSwitch.on=book.issued;
    
-    
-}
-- (void)viewWillAppear:(BOOL)animated {
-    
-    [super viewWillAppear:animated];
-    
-    //initData
-    
-    
-    
-    [self.view reloadInputViews];
     
 }
 
@@ -78,15 +62,20 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+
+- (IBAction)okButton:(id)sender {
+    //pop back the view
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+
 - (void)dealloc {
     [_titleLabel release];
     [_bookIdLabel release];
     [_authorLabel release];
-    
     [_issueSwitch release];
     [super dealloc];
 }
-- (IBAction)okButton:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
-}
+
 @end

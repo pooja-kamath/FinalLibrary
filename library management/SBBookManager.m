@@ -15,6 +15,7 @@
 @synthesize bookIndex;
 @synthesize bookArray;
 
+//making the manager singleton
 + (id)sharedManager {
     static SBBookManager *sharedMyManager = nil;
     static dispatch_once_t onceToken;
@@ -89,7 +90,7 @@
 
 -(void)bookIssued
 {
-    
+    //set the issued property of the selected book to yes
     NSLog(@"in issue");
     SBBook *b=[bookArray objectAtIndex:bookIndex];
     b.issued=YES;
@@ -99,7 +100,7 @@
 }
 -(void)bookReturned
 {
-    
+     //set the issued property of the selected book to no
     NSLog(@"in return");
     
     SBBook *b=[bookArray objectAtIndex:bookIndex];
@@ -108,12 +109,14 @@
 }
 -(SBBook *)getBookDetail
 {
+    
+    
     NSLog(@"indx= %ld",(long)bookIndex);
     
     //get the book object at a particular index
     SBBook *book=[bookArray objectAtIndex:bookIndex];
     
-   
+   //return the book
     return book;
     
     

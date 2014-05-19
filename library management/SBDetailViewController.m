@@ -18,7 +18,7 @@
 
 - (IBAction)okButton:(id)sender;
 
-@property (retain, nonatomic) IBOutlet UISwitch *issueSwitch;
+@property (strong, nonatomic) IBOutlet UISwitch *issueSwitch;
 @end
 
 @implementation SBDetailViewController
@@ -28,7 +28,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        _sharedManager = [SBBookManager sharedManager];
+        _sharedBookManager = [SBBookManager sharedManager];
         
 
     }
@@ -40,18 +40,29 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    
-//    UIColor *background = [[[UIColor alloc] initWithPatternImage:[UIImage imageNamed: @"stack-of-books.jpg"]]autorelease];
-//    self.view.backgroundColor = background;
+    //set the background
+    UIColor *background = [[[UIColor alloc] initWithPatternImage:[UIImage imageNamed: @"stack-of-books.jpg"]]autorelease];
+    self.view.backgroundColor = background;
+
+    UIColor *whiteColor = [UIColor whiteColor];
     
     //get the book object that has to be displayed
-    SBBook *book=[_sharedManager getBookDetail];
+    SBBook *book=[_sharedBookManager getBookDetail];
     
     //set the label values to the value that has to be displayed
     _titleLabel.text=book.title;
     _bookIdLabel.text=book.bookId;
     _authorLabel.text=book.author;
     _issueSwitch.on=book.issued;
+   
+    //disable user interaction of the switch
+    _issueSwitch.userInteractionEnabled=NO;
+    
+    //set the background color
+    _titleLabel.backgroundColor=whiteColor;
+    _bookIdLabel.backgroundColor=whiteColor;
+    _authorLabel.backgroundColor=whiteColor;
+    
    
     
 }
@@ -64,13 +75,16 @@
 
 
 
-- (IBAction)okButton:(id)sender {
+- (IBAction)okButton:(id)sender
+{
     //pop back the view
     [self.navigationController popViewControllerAnimated:YES];
+    
 }
 
 
 - (void)dealloc {
+    
     [_titleLabel release];
     [_bookIdLabel release];
     [_authorLabel release];

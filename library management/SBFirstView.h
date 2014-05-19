@@ -15,7 +15,7 @@
 @property (retain) NSArray *booklist;
 
 //shared manager instance
-@property (assign) SBBookManager *sharedManger;
+@property (assign) SBBookManager *sharedBookManager;
 
-@property (assign) NSIndexPath *indexPath;
+
 @end

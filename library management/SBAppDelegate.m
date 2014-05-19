@@ -8,6 +8,7 @@
 
 #import "SBAppDelegate.h"
 #import "SBFirstView.h"
+#import "SBBookManager.h"
 @implementation SBAppDelegate
 
 @synthesize view;
@@ -46,6 +47,7 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
+  
     [view release];
     [navigationController release];
     

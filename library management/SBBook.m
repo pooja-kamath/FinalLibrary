@@ -18,8 +18,11 @@
 - (void)dealloc
 {
     [ title release];
+    title=nil;
     [ bookId release];
+    bookId=nil;
     [ author release];
+    author=nil;
     [super dealloc];
 }
 

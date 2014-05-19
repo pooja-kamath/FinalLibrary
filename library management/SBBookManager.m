@@ -27,6 +27,8 @@
     });
     return sharedMyManager;
 }
+
+
 - (id)init
 {
     self = [super init];
@@ -44,8 +46,6 @@
     //increment book count each time a book is added
     count++;
     
-    NSLog(@"delegate is called");
-    
     //create a book object with the values passed
     SBBook * book =[[SBBook alloc]init];
     book.title=title;
@@ -55,7 +55,8 @@
     
     //add the book created to the array
     [bookArray addObject:book];
-    NSLog(@"%@",title);
+  
+    
     [book release];
     
     
@@ -71,8 +72,8 @@
     {
         
         NSString *bookNames=@"";
-        SBBook *book1=[bookArray objectAtIndex:i];
-        bookNames=book1.title;
+        SBBook *book=[bookArray objectAtIndex:i];
+        bookNames=book.title;
         [bookList addObject:bookNames];
         
     }
@@ -92,19 +93,20 @@
 {
     //set the issued property of the selected book to yes
     NSLog(@"in issue");
-    SBBook *b=[bookArray objectAtIndex:bookIndex];
-    b.issued=YES;
+    SBBook *book=[bookArray objectAtIndex:bookIndex];
     
+       book.issued=YES;
+        
     
-    
-}
+  }
 -(void)bookReturned
 {
      //set the issued property of the selected book to no
     NSLog(@"in return");
     
-    SBBook *b=[bookArray objectAtIndex:bookIndex];
-    b.issued=NO;
+    SBBook *book=[bookArray objectAtIndex:bookIndex];
+    
+    book.issued=NO;
     
 }
 -(SBBook *)getBookDetail
@@ -124,8 +126,12 @@
 
 - (void)dealloc
 {
-  
+    
+   
     [bookArray release];
+    bookArray=nil;
     [super dealloc];
+    
+    
 }
 @end

@@ -27,7 +27,7 @@
         
         
         //initialize shared manager
-         _sharedManger = [SBBookManager sharedManager];
+         _sharedBookManager = [SBBookManager sharedManager];
         
 
     }
@@ -40,21 +40,15 @@
     // Do any additional setup after loading the view from its nib.
     
     
-    //set the background
-    UIColor *background = [[[UIColor alloc] initWithPatternImage:[UIImage imageNamed: @"stack-of-books.jpg"]]autorelease];
-    self.view.backgroundColor = background;
-    
-    
     //create a bar button
     UIBarButtonItem* infoButton = [[[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(add)]autorelease];
     self.navigationItem.rightBarButtonItem = infoButton;
-    self.navigationItem.hidesBackButton = YES;
-
-    //get the list of book titles to display
-    _booklist=[_sharedManger getCellText];
-    
-
-
+   
+  
+    //get the array of book titles to display
+    _booklist=[_sharedBookManager getCellText];
+   
+       
     
 }
 
@@ -67,20 +61,22 @@
 
 - (UITableViewCell *)tableView:(UITableView *)table cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    indexPath=indexPath;
+   
     //deque reuseable cells
+    
     static NSString *simpleTableIdentifier = @"SimpleTableItem";
     
     SBTableViewCell *cell = [table dequeueReusableCellWithIdentifier:simpleTableIdentifier];
     
-    if (cell == nil) {
-        cell = [[SBTableViewCell alloc]initWithTitle:[_booklist objectAtIndex:indexPath.row]] ;
+    if (cell == nil)
+    {
+        
+        cell = [[[SBTableViewCell alloc]initWithTitle:[_booklist objectAtIndex:indexPath.row]]autorelease] ;
+        
     }
     
+    //assign self as the delegate of the cell
     cell.delegate=self;
-//    [cell getCellWithIndexPath:indexPath];
-//    //cell.textLabel.text=[_booklist objectAtIndex:indexPath.row];
-   
     return cell;
     
 }
@@ -92,22 +88,29 @@
     [form release];
 }
 
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    //return  count of books added 
     return [_booklist count];
 }
+
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
     
 }
-- (void)viewWillAppear:(BOOL)animated {
+
+
+- (void)viewWillAppear:(BOOL)animated
+{
     
     [super viewWillAppear:animated];
     
     //get the data to be displayed
     
-    _booklist=[_sharedManger getCellText];
+    _booklist=[_sharedBookManager getCellText];
     
     //reload the table view after a new book is added
     [self.table reloadData];
@@ -117,8 +120,8 @@
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
     
-    //delegate to set the value of indexpath in the controller
-    [_sharedManger setIndex:indexPath.row];
+    //method to set the value of indexpath in the controller
+    [_sharedBookManager setIndex:indexPath.row];
     
     //push the detail view
     SBDetailViewController *detailView=[[SBDetailViewController alloc]initWithNibName:@"SBDetailViewController" bundle:nil];
@@ -129,35 +132,58 @@
 }
 -(void)issue:(UIButton*)sender
 {
+    NSIndexPath *indexValue;
+    
+    //get the index value based on position of the button in the table
+    CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.table];
+    indexValue = [self.table indexPathForRowAtPoint:buttonPosition];
+    
     //set the  index value
-    [_sharedManger setIndex:_indexPath.row];
+   [_sharedBookManager setIndex:indexValue.row];
     
     
-    //call the delegate to issue book
-    [_sharedManger bookIssued];
+    
+    //call the method to issue book
+    [_sharedBookManager bookIssued];
     
     //display alert that book has been issued
-    UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"alert" message:@"the book has been issued" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"alert" message:@"the book is issued" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
     [alert show];
     [alert release];
+    
 }
+
 -(void)returns:(UIButton*)sender
 {
-    //set the index value
-    [_sharedManger setIndex:_indexPath.row];
     
-    //call the delegate to return book
-    [_sharedManger bookReturned];
+    NSIndexPath *indexValue;
+    
+    //get the index value based on the position of the button in the table
+    CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.table];
+    indexValue = [self.table indexPathForRowAtPoint:buttonPosition];
+    
+    //set the index value
+    [_sharedBookManager setIndex:indexValue.row];
+    
+    //call the method to return book
+    [_sharedBookManager bookReturned];
     
     //display alert that book has been returned
     UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"alert" message:@"the book has been returned" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
     [alert show];
     [alert release];
+   
+    
 }
+
+
 
 - (void)dealloc {
    
-    [_table release];
-    [super dealloc];
+    
+    [_booklist release];
+    _booklist=nil;
+   
+       [super dealloc];
 }
 @end

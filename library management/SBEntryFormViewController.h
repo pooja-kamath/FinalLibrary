@@ -13,6 +13,6 @@
 @interface SBEntryFormViewController : UIViewController <UITextFieldDelegate,UITextViewDelegate>
 
 //shared manager instance
-@property (assign) SBBookManager *sharedManager;
+@property (assign) SBBookManager *sharedBookManager;
 
 @end

@@ -10,14 +10,18 @@
 #import "SBBookManager.h"
 @protocol cellDelegate
 
+
+//delegate called on clicking issue button
 -(void)issue:(UIButton*)sender;
+
+//delegate called on clicking return button
 -(void)returns:(UIButton*)sender;
 
 @end
 @interface SBTableViewCell : UITableViewCell
-@property (assign )SBBookManager *sharedManager;
-@property(retain) NSArray *booklist;
 
 @property (assign) id delegate;
+
 - (id)initWithTitle:(NSString*) title;
+
 @end

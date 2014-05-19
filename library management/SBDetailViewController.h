@@ -10,6 +10,6 @@
 #import "SBBookManager.h"
 @interface SBDetailViewController : UIViewController
 
-@property (assign) SBBookManager *sharedManager;
+@property (assign) SBBookManager *sharedBookManager;
 
 @end

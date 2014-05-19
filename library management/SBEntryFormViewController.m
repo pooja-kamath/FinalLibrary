@@ -28,7 +28,7 @@
     if (self) {
         
         // Custom initialization
-        _sharedManager = [SBBookManager sharedManager];
+        _sharedBookManager = [SBBookManager sharedManager];
         
 
     }
@@ -41,7 +41,7 @@
     // Do any additional setup after loading the view from its nib.
     
     
-    
+    //set the background
     UIColor *background = [[[UIColor alloc] initWithPatternImage:[UIImage imageNamed: @"stack-of-books.jpg"]]autorelease];
     self.view.backgroundColor = background;
     
@@ -60,12 +60,26 @@
 
 - (IBAction)AddButton:(id)sender {
     
-             [_sharedManager addBookwithTitle:_titleText.text bookId:_bookIdText.text author:_authorText.text andIssued:_issueSwitch.on];
+    if([_titleText.text isEqual:@""] ||[_bookIdText.text isEqual:@""] || [_authorText.text isEqual:@""])
+    {
+        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"alert" message:@"invalid input" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        [alert release];
+    }
+    else
+    {
+    //call the  book manager method to add the book to the array
+             [_sharedBookManager addBookwithTitle:_titleText.text bookId:_bookIdText.text author:_authorText.text andIssued:_issueSwitch.on];
+    
+    
+    //show alert that book has been added
          UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"alert" message:@"the book has been added" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
          [alert show];
          [alert release];
-         
-         [self.navigationController popViewControllerAnimated:YES];
+    
+    //pop back to first view
+      [self.navigationController popViewControllerAnimated:YES];
+    }
     
 }
 
@@ -83,11 +97,11 @@
             
             }
          //text is greater than four text field should not change
-              else
+          else
           {
              return NO;
           }
-    }
+        }
     return YES;
     }
     
@@ -122,9 +136,13 @@
 - (void)dealloc {
     
     [_titleText release];
+    _titleText=nil;
     [_bookIdText release];
-        [_authorText release];
+    _bookIdText=nil;
+    [_authorText release];
+    _authorText=nil;
     [_issueSwitch release];
+    _issueSwitch=nil;
     [super dealloc];
 }
 
